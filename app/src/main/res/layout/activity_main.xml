@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="定位"
+                android:textSize="18sp" />
+
+            <!--连续定位-->
+            <Button
+                android:id="@+id/btn_continuous_positioning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="连续定位" />
+
+            <!--单次定位-->
+            <Button
+                android:id="@+id/btn_single_positioning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="单次定位" />
+
+            <!--后台定位-->
+            <Button
+                android:id="@+id/btn_background_positioning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="后台定位" />
+
+            <!--停止定位-->
+            <Button
+                android:id="@+id/btn_stop_positioning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="停止定位" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="地理围栏"
+                android:textSize="18sp" />
+            <!--添加围栏-->
+            <Button
+                android:id="@+id/btn_add_fence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="添加围栏" />
+
+            <!--移除围栏-->
+            <Button
+                android:id="@+id/btn_remove_fence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="移除围栏" />
+
+            <!--位置信息-->
+            <TextView
+                android:id="@+id/tv_location_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="8dp"
+                android:text="位置信息"
+                android:textColor="#000"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="地图"
+                android:textSize="18sp" />
+            <!--基础地图-->
+            <Button
+                android:id="@+id/btn_base_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="基础地图" />
+
+            <!--地图类型-->
+            <Button
+                android:id="@+id/btn_map_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="地图类型" />
+
+            <!--个性化地图-->
+            <Button
+                android:id="@+id/btn_personalized_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="个性化地图" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

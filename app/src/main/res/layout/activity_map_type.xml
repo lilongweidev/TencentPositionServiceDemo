@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".map.MapTypeActivity">
+    <!--地图类型选择-->
+    <RadioGroup
+        android:id="@+id/rp_map_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:checked="true"
+            android:text="普通图" />
+
+        <RadioButton
+            android:id="@+id/rb_satellite"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫星图" />
+
+        <RadioButton
+            android:id="@+id/rb_dark"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暗色图" />
+
+        <RadioButton
+            android:id="@+id/rb_traffic"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="路况" />
+
+        <RadioButton
+            android:visibility="gone"
+            android:id="@+id/rb_style_map"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个性化" />
+    </RadioGroup>
+    <!--地图类型-->
+    <com.tencent.tencentmap.mapsdk.maps.MapView
+        android:layout_below="@+id/rp_map_type"
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

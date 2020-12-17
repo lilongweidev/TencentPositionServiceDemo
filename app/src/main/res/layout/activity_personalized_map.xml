@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".map.PersonalizedMapActivity">
+    <!--地图类型选择-->
+    <RadioGroup
+        android:id="@+id/rp_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:text="经典" />
+
+        <RadioButton
+            android:id="@+id/rb_style_one"
+            android:buttonTint="#1296db"
+            android:checked="true"
+            android:buttonTintMode="src_atop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="烟翠" />
+
+        <RadioButton
+            android:id="@+id/rb_style_two"
+            android:buttonTint="#1296db"
+            android:buttonTintMode="src_atop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="墨渊" />
+    </RadioGroup>
+    <!--个性化地图-->
+    <com.tencent.tencentmap.mapsdk.maps.MapView
+        android:layout_below="@+id/rp_style"
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
