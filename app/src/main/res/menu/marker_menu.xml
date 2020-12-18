@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_add"
+        android:title="添加"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/menu_add_default_marker"
+                android:title="添加默认标注"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/menu_add_custom_marker"
+                android:title="添加自定义标注"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/menu_add_default_info_window"
+                android:title="添加默认信息窗口"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/menu_add_custom_info_window"
+                android:title="添加自定义信息窗口"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/menu_remove_marker"
+                android:title="移除标注"
+                app:showAsAction="always" />
+        </menu>
+    </item>
+
+</menu>

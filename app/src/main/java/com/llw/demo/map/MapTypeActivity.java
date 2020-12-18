@@ -32,7 +32,7 @@ public class MapTypeActivity extends AppCompatActivity implements RadioGroup.OnC
         radioGroup.setOnCheckedChangeListener(this);
         tencentMap = mapView.getMap();
         //设置为经典样式
-        //tencentMap.setMapStyle(2);
+        tencentMap.setMapStyle(2);
 
         mapLifecycle = new MapLifecycle(mapView);
         getLifecycle().addObserver(mapLifecycle);

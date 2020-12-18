@@ -32,25 +32,9 @@ public class PersonalizedMapActivity extends AppCompatActivity implements RadioG
 
         mapLifecycle = new MapLifecycle(mapView);
         getLifecycle().addObserver(mapLifecycle);
+
         radioGroup = findViewById(R.id.rp_style);
         radioGroup.setOnCheckedChangeListener(this);
-
-        //方式1
-        /*mapView = findViewById(R.id.mapView);
-        tencentMap = mapView.getMap();
-        //参数1对应的是“我的样式”中的序号
-        tencentMap.setMapStyle(1);*/
-
-
-        //方式2
-        //构造 TencentMapOptions 对象
-        //TencentMapOptions mapOptions = new TencentMapOptions();
-        //将下载好的个性化配置文件解压后放入工程的 assets/myMapStyle/ 目录下
-        //mapOptions.setCustomAssetsPath("myMapStyle/");
-        //使用构造好的 TencentMapOptions 对象构造 MapView
-        //mapView = new MapView(this, mapOptions);
-
-
     }
 
     @Override

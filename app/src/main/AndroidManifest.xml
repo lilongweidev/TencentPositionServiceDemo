@@ -23,16 +23,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".map.PersonalizedMapActivity"></activity>
-        <activity android:name=".map.MapTypeActivity" />
-        <activity android:name=".map.BaseMapActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".map.MarkerActivity"
+            android:label="覆盖物"></activity>
+        <activity
+            android:name=".map.PersonalizedMapActivity"
+            android:label="个性化地图" />
+        <activity
+            android:name=".map.MapTypeActivity"
+            android:label="地图类型" />
+        <activity
+            android:name=".map.BaseMapActivity"
+            android:label="基础地图" />
+        <activity
+            android:name=".MainActivity"
+            android:label="定位地图示例Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- AppKey -->
+        </activity>
+        <!-- AppKey -->
         <meta-data
             android:name="TencentMapSDK"
             android:value="JFOBZ-PV3RD-ZNH42-P7G5M-D2CTH-KAFQ2" /> <!-- 定位服务 -->

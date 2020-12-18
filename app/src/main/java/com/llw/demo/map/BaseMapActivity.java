@@ -17,6 +17,8 @@ import com.tencent.map.geolocation.TencentLocationRequest;
 import com.tencent.tencentmap.mapsdk.maps.LocationSource;
 import com.tencent.tencentmap.mapsdk.maps.MapView;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
+import com.tencent.tencentmap.mapsdk.maps.TencentMapOptions;
+import com.tencent.tencentmap.mapsdk.maps.UiSettings;
 
 /**
  * 基础地图
@@ -60,7 +62,41 @@ public class BaseMapActivity extends AppCompatActivity implements LocationSource
         //创建tencentMap地图对象
         tencentMap = mapView.getMap();
         //设置为经典样式
-        //tencentMap.setMapStyle(2);
+        tencentMap.setMapStyle(2);
+
+        //设置最大缩放等级 最大值 20 最小值 1
+        tencentMap.setMaxZoomLevel(20);
+        //设置最小缩放等级 最大值 20 最小值 1
+        tencentMap.setMinZoomLevel(18);
+        //启用3D视图
+        tencentMap.setBuilding3dEffectEnable(true);
+
+        //获取地图UI设置对象
+        UiSettings uiSettings = tencentMap.getUiSettings();
+        //设置logo的大小   比例范围(0.7~1.3)
+        uiSettings.setLogoScale(0.7f);
+
+        //设置logo底部居中
+        uiSettings.setLogoPosition(TencentMapOptions.LOGO_POSITION_BOTTOM_CENTER);
+        //设置logo左下角显示同时设置与MapView的左边距和下边距为100
+        //uiSettings.setLogoPosition(TencentMapOptions.LOGO_POSITION_BOTTOM_LEFT, new int[]{100, 100});
+
+        //设置比例尺是否显示  true显示，false不显示，不设置则为默认值，默认为true
+        uiSettings.setScaleViewEnabled(true);
+        //设置比例尺显示在右下角
+        uiSettings.setScaleViewPosition(TencentMapOptions.SCALEVIEW_POSITION_BOTTOM_RIGHT);
+
+        //设置指南针是否显示 true显示， false不显示，不设置则为默认值，默认为false
+        uiSettings.setCompassEnabled(true);
+        //设置指南针的填充值。一个值 为设置指南针上边缘距离 MapView 上边缘的距离为100px
+        // 两个值 为设置指南针距离 MapView 左边缘和上边缘的距离，第一个值为左，第二个值为上。
+        uiSettings.setCompassExtraPadding(20, 20);
+
+        //设置缩放控件是否显示，true显示，false不显示，不设置则为默认值，默认为false
+        uiSettings.setZoomControlsEnabled(true);
+        //设置缩放控件显示在左下角
+        uiSettings.setZoomPosition(TencentMapOptions.ZOOM_POSITION_BOTTOM_LEFT);
+
 
         mapLifecycle = new MapLifecycle(mapView);
         //将观察者与被观察者绑定起来
@@ -99,6 +135,7 @@ public class BaseMapActivity extends AppCompatActivity implements LocationSource
             location.setLatitude(tencentLocation.getLatitude());
             location.setLongitude(tencentLocation.getLongitude());
             location.setAccuracy(tencentLocation.getAccuracy());
+            Log.d("location-->", tencentLocation.getLatitude() + "==" + tencentLocation.getLongitude());
             //更改位置定位，此时地图上就会显示当前定位到位置
             locationChangedListener.onLocationChanged(location);
         }

@@ -106,6 +106,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="个性化地图" />
+
+            <!--地图覆盖物-->
+            <Button
+                android:id="@+id/btn_map_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="地图覆盖物" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -14,7 +14,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.llw.demo.map.BaseMapActivity;
+import com.llw.demo.map.MarkerActivity;
 import com.llw.demo.map.MapTypeActivity;
 import com.llw.demo.map.PersonalizedMapActivity;
 import com.llw.demo.receiver.GeofenceEventReceiver;
@@ -33,8 +33,6 @@ import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
 import com.tencent.map.geolocation.TencentLocationRequest;
 import com.tencent.map.geolocation.TencentPoi;
-import com.tencent.tencentmap.mapsdk.maps.MapView;
-import com.tencent.tencentmap.mapsdk.maps.TencentMap;
 
 import java.util.List;
 
@@ -62,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnMapType;
     //个性化地图
     private Button btnPersonalizedMap;
+    //地图覆盖物
+    private Button btnMapCover;
 
     //定位管理
     private TencentLocationManager mLocationManager;
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION_TRIGGER_GEOFENCE);
         //注册动态广播  记得去掉AndroidManifest.xml的静态广播配置
-        registerReceiver(geofenceEventReceiver,intentFilter);
+        registerReceiver(geofenceEventReceiver, intentFilter);
 
     }
 
@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnBaseMap = findViewById(R.id.btn_base_map);
         btnMapType = findViewById(R.id.btn_map_type);
         btnPersonalizedMap = findViewById(R.id.btn_personalized_map);
+        btnMapCover = findViewById(R.id.btn_map_cover);
 
         btnContinuousPositioning.setOnClickListener(this);
         btnStopPositioning.setOnClickListener(this);
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnBaseMap.setOnClickListener(this);
         btnMapType.setOnClickListener(this);
         btnPersonalizedMap.setOnClickListener(this);
+        btnMapCover.setOnClickListener(this);
 
         //实例化
         rxPermissions = new RxPermissions(this);
@@ -217,24 +219,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 动态权限申请
      */
     private void permissionsRequest() {//使用这个框架使用了Lambda表达式，设置JDK版本为 1.8或者更高
-
-        String[] permissions = {
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-        String[] permissionsForQ = {
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION, //target为Q时，动态请求后台定位权限
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-
-        final String[] permissionsResult = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ? permissionsForQ : permissions;
-
-
         rxPermissions.request(Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_PHONE_STATE,
@@ -243,7 +227,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .subscribe(granted -> {
                     if (granted) {//申请成功
                         //发起连续定位请求
-                        showMsg("您已获得权限，可以定位了");
+                        //showMsg("您已获得权限，可以定位了");
+                        Log.d(TAG,"您已获得权限，可以定位了");
                     } else {//申请失败
                         showMsg("权限未开启");
                     }
@@ -279,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_add_fence:
                 //添加围栏
-                mTencentGeofenceManager.addFence(geofence,pi);
+                mTencentGeofenceManager.addFence(geofence, pi);
                 showMsg("地理围栏已添加，请在附近溜达一下");
                 break;
             case R.id.btn_remove_fence:
@@ -292,19 +277,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_base_map:
                 //基础地图
-                startActivity(new Intent(this, BaseMapActivity.class));
+                goToActivity(BaseMapActivity.class);
                 break;
             case R.id.btn_map_type:
                 //地图类型
-                startActivity(new Intent(this, MapTypeActivity.class));
+                goToActivity(MapTypeActivity.class);
                 break;
             case R.id.btn_personalized_map:
                 //个性化地图
-                startActivity(new Intent(this, PersonalizedMapActivity.class));
+                goToActivity(PersonalizedMapActivity.class);
+                break;
+            case R.id.btn_map_cover:
+                //地图覆盖物
+                goToActivity(MarkerActivity.class);
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 跳转页面
+     *
+     * @param clazz 目标Activity
+     */
+    private void goToActivity(Class<? extends AppCompatActivity> clazz) {
+        startActivity(new Intent(this, clazz));
     }
 
     /**
